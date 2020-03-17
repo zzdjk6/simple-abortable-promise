@@ -1,6 +1,6 @@
 import 'abortcontroller-polyfill/dist/abortcontroller-polyfill-only';
 interface Abortable {
-    abort: (reason: string) => void;
+    abort: (reason?: string) => void;
 }
 interface AbortableExecutorFunction<T> {
     (resolve: (value?: PromiseLike<T> | T) => void, reject: (reason?: any) => void, abortSignal: AbortSignal): void;

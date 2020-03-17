@@ -14,7 +14,9 @@ class AbortablePromise extends Promise {
         };
         super(normalExecutor);
         this.abort = reason => {
-            abortReason = reason;
+            if (reason) {
+                abortReason = reason;
+            }
             abortController.abort();
         };
     }

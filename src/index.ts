@@ -1,7 +1,7 @@
 import 'abortcontroller-polyfill/dist/abortcontroller-polyfill-only';
 
 interface Abortable {
-  abort: (reason: string) => void;
+  abort: (reason?: string) => void;
 }
 
 interface ExecutorFunction<T> {
@@ -30,7 +30,9 @@ export class AbortablePromise<T> extends Promise<T> implements Abortable {
 
     super(normalExecutor);
     this.abort = reason => {
-      abortReason = reason;
+      if (reason) {
+        abortReason = reason;
+      }
       abortController.abort();
     };
   }
