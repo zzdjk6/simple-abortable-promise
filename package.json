@@ -1,0 +1,38 @@
+{
+  "name": "simple-abortable-promise",
+  "version": "1.0.0",
+  "description": "A Simple Implementation of Abortable Promise",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist/**/*"
+  ],
+  "dependencies": {
+    "abortcontroller-polyfill": "^1.4.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.8.7",
+    "@babel/plugin-proposal-class-properties": "^7.8.3",
+    "@babel/preset-env": "^7.8.7",
+    "@babel/preset-typescript": "^7.8.3",
+    "@types/jest": "^25.1.4",
+    "babel-jest": "^25.1.0",
+    "coveralls": "^3.0.9",
+    "jest": "^25.1.0",
+    "prettier": "^1.19.1",
+    "typescript": "^3.8.3"
+  },
+  "scripts": {
+    "test": "jest",
+    "test-coverage": "jest --collect-coverage",
+    "build": "tsc"
+  },
+  "keywords": [
+    "abort",
+    "abortable",
+    "promise",
+    "simple"
+  ],
+  "author": "Thor (Shenghan)",
+  "license": "MIT"
+}
