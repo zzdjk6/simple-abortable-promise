@@ -1,4 +1,4 @@
-# simple-abortable-promise
+# simple-abortable-promise [![Build Status](https://travis-ci.com/zzdjk6/simple-abortable-promise.svg?branch=master)](https://travis-ci.com/zzdjk6/simple-abortable-promise) [![Coverage Status](https://coveralls.io/repos/github/zzdjk6/simple-abortable-promise/badge.svg)](https://coveralls.io/github/zzdjk6/simple-abortable-promise)
 
 A Simple Implementation of Abortable Promise
 
