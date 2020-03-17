@@ -34,5 +34,10 @@
     "simple"
   ],
   "author": "Thor (Shenghan)",
-  "license": "MIT"
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com:zzdjk6/simple-abortable-promise.git"
+  },
+  "homepage": "https://github.com/zzdjk6/simple-abortable-promise"
 }
