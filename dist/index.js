@@ -5,20 +5,20 @@ class AbortablePromise extends Promise {
     constructor(executor) {
         const abortController = new AbortController();
         const abortSignal = abortController.signal;
-        let abortReason;
         const normalExecutor = (resolve, reject) => {
             abortSignal.addEventListener('abort', () => {
-                reject(new AbortError(abortReason));
+                reject(new AbortError(this.abortReason));
             });
             executor(resolve, reject, abortSignal);
         };
         super(normalExecutor);
         this.abort = reason => {
-            if (reason) {
-                abortReason = reason;
-            }
+            this._abortReason = reason ? reason : 'Aborted';
             abortController.abort();
         };
+    }
+    get abortReason() {
+        return this._abortReason;
     }
 }
 exports.AbortablePromise = AbortablePromise;

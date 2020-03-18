@@ -1,7 +1,8 @@
 import 'abortcontroller-polyfill/dist/abortcontroller-polyfill-only';
 
-interface Abortable {
+export interface Abortable {
   abort: (reason?: string) => void;
+  readonly abortReason?: string;
 }
 
 interface ExecutorFunction<T> {
@@ -14,15 +15,19 @@ interface AbortableExecutorFunction<T> {
 
 export class AbortablePromise<T> extends Promise<T> implements Abortable {
   public abort: Abortable['abort'];
+  public get abortReason(): string | undefined {
+    return this._abortReason;
+  }
+
+  private _abortReason?: string;
 
   constructor(executor: AbortableExecutorFunction<T>) {
     const abortController = new AbortController();
     const abortSignal = abortController.signal;
 
-    let abortReason: string;
     const normalExecutor: ExecutorFunction<T> = (resolve, reject) => {
       abortSignal.addEventListener('abort', () => {
-        reject(new AbortError(abortReason));
+        reject(new AbortError(this.abortReason));
       });
 
       executor(resolve, reject, abortSignal);
@@ -30,9 +35,7 @@ export class AbortablePromise<T> extends Promise<T> implements Abortable {
 
     super(normalExecutor);
     this.abort = reason => {
-      if (reason) {
-        abortReason = reason;
-      }
+      this._abortReason = reason ? reason : 'Aborted';
       abortController.abort();
     };
   }
