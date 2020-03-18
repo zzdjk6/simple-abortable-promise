@@ -53,11 +53,14 @@ describe('AbortablePromise', () => {
   });
 
   it('can be created from existing promise', async () => {
-    expect.assertions(3);
+    expect.assertions(4);
     const promise = new Promise<number>(resolve => {
       setTimeout(() => resolve(500), 500);
     });
     const abortablePromise = AbortablePromise.from(promise);
+    const anotherAbortablePromise = AbortablePromise.from(abortablePromise);
+    expect(anotherAbortablePromise).toBe(abortablePromise);
+
     setTimeout(() => abortablePromise.abort('I abort it'), 200);
 
     try {

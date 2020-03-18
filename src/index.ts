@@ -41,6 +41,11 @@ export class AbortablePromise<T> extends Promise<T> implements Abortable {
   }
 
   static from = <T>(promise: Promise<T>): AbortablePromise<T> => {
+    // If promise is already an AbortablePromise, return it directly
+    if (promise instanceof AbortablePromise) {
+      return promise;
+    }
+
     return new AbortablePromise<T>((resolve, reject) => {
       promise.then(resolve).catch(reject);
     });
