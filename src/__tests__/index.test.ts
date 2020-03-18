@@ -1,6 +1,15 @@
 import { AbortablePromise, AbortError } from '../index';
 
 describe('AbortablePromise', () => {
+  it('is a promise', async () => {
+    expect.assertions(1);
+    const abortablePromise = new AbortablePromise<number>(resolve => {
+      setTimeout(() => resolve(100), 100);
+    });
+    expect(abortablePromise).toBeInstanceOf(Promise);
+    await abortablePromise;
+  });
+
   it('can abort', async () => {
     expect.assertions(3);
     const abortablePromise = new AbortablePromise<number>(resolve => {
