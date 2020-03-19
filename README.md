@@ -2,6 +2,14 @@
 
 A Simple Implementation of Abortable Promise
 
+## Overview
+
+This library provides a deadly simple implementation of making `Promise` abortable.
+
+That is, an `AbortablePromise` is a `Promise` with the abitlity to be aborted.
+
+When an `AbortablePromise` is aborted, it will reject with an `AbortError`.
+
 ## How to install?
 
 ```bash
@@ -18,11 +26,11 @@ There are 2 ways to create an `AbortablePromise`:
 
 ```typescript
 const abortablePromise = new AbortablePromise<T>((resolve, resolve, abortSignal) => {
-   // ...
+  // ...
 });
 ```
 
-#### Create from a promise
+#### Create from an existing Promise
 
 ```typescript
 const abortablePromise = AbortablePromise.from(promise);
