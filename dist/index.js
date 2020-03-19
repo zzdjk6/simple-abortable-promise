@@ -23,6 +23,10 @@ class AbortablePromise extends Promise {
 }
 exports.AbortablePromise = AbortablePromise;
 AbortablePromise.from = (promise) => {
+    // If promise is already an AbortablePromise, return it directly
+    if (promise instanceof AbortablePromise) {
+        return promise;
+    }
     return new AbortablePromise((resolve, reject) => {
         promise.then(resolve).catch(reject);
     });
