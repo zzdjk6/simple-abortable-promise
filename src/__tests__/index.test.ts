@@ -52,6 +52,34 @@ describe('AbortablePromise', () => {
     }
   });
 
+  it('can do something more when abort', async () => {
+    expect.assertions(3);
+
+    const mockFn1 = jest.fn();
+    const mockFn2 = jest.fn();
+
+    const abortablePromise = new AbortablePromise<number>((resolve, _, abortSignal) => {
+      setTimeout(() => resolve(500), 500);
+      abortSignal.onabort = () => {
+        mockFn1();
+      };
+      abortSignal.addEventListener('abort', () => {
+        mockFn2();
+      });
+    });
+
+    setTimeout(() => abortablePromise.abort(), 200);
+
+    try {
+      await abortablePromise;
+    } catch (e) {
+      expect(e).toBeInstanceOf(AbortError);
+    }
+
+    expect(mockFn1).toBeCalledTimes(1);
+    expect(mockFn2).toBeCalledTimes(1);
+  });
+
   it('can be created from existing promise', async () => {
     expect.assertions(4);
     const promise = new Promise<number>(resolve => {
