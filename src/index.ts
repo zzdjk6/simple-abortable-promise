@@ -34,7 +34,7 @@ export class AbortablePromise<T> extends Promise<T> implements Abortable {
     };
 
     super(normalExecutor);
-    this.abort = reason => {
+    this.abort = (reason) => {
       this._abortReason = reason ? reason : 'Aborted';
       abortController.abort();
     };

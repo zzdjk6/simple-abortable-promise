@@ -1,6 +1,6 @@
 {
   "name": "simple-abortable-promise",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "A Simple Implementation of Abortable Promise",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -11,15 +11,15 @@
     "abortcontroller-polyfill": "^1.4.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.8.7",
+    "@babel/core": "^7.9.0",
     "@babel/plugin-proposal-class-properties": "^7.8.3",
-    "@babel/preset-env": "^7.8.7",
-    "@babel/preset-typescript": "^7.8.3",
+    "@babel/preset-env": "^7.9.0",
+    "@babel/preset-typescript": "^7.9.0",
     "@types/jest": "^25.1.4",
     "babel-jest": "^25.1.0",
-    "coveralls": "^3.0.9",
+    "coveralls": "^3.0.11",
     "jest": "^25.1.0",
-    "prettier": "^1.19.1",
+    "prettier": "^2.0.1",
     "typescript": "^3.8.3"
   },
   "scripts": {
@@ -28,10 +28,25 @@
     "build": "tsc"
   },
   "keywords": [
-    "abort",
-    "abortable",
     "promise",
-    "simple"
+    "promises",
+    "abort",
+    "abortSignal",
+    "abortController",
+    "abortable",
+    "aborting",
+    "aborted",
+    "onabort",
+    "cancel",
+    "canceled",
+    "canceling",
+    "cancelable",
+    "cancellable",
+    "cancellation",
+    "simple",
+    "async",
+    "await",
+    "signal"
   ],
   "author": "Thor (Shenghan)",
   "license": "MIT",

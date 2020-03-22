@@ -25,7 +25,7 @@ There are 2 ways to create an `AbortablePromise`:
 #### Constructor
 
 ```typescript
-const abortablePromise = new AbortablePromise<T>((resolve, resolve, abortSignal) => {
+const abortablePromise = new AbortablePromise<T>((resolve, reject, abortSignal) => {
   // ...
 });
 ```
@@ -45,3 +45,37 @@ abortablePromise.abort();
 // Abort with custom reason
 abortablePromise.abort('I abort it');
 ```
+
+## Receipes
+
+### Use with fetch
+
+```typescript
+const loadData = (id: number) => {
+  retrun new AbortablePromise<Data>((resolve, reject, abortSignal) => {
+    fetch(url, { signal: abortSignal })
+      .then(response => response.json())
+      .then(parseJsonToData)
+      .then(resolve)
+      .catch(reject);
+  });
+}
+
+const abortablePromise = loadData(id);
+abortablePromise.abort();
+```
+
+### Do something more when abort
+
+```typescript
+const abortablePromise = new AbortablePromise<Data>((resolve, reject, abortSignal) => {
+  abortSignal.addEventListener('abort', () => {
+    // Do something
+  });
+  // ...
+});
+```
+
+## More
+
+More background explain is available on my [blog](https://medium.com/@zzdjk6/a-simple-implementation-of-abortable-promise-using-abortcontroller-with-typescript-2c163ee050e8).
