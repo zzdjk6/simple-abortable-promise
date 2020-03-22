@@ -3,7 +3,7 @@ import { AbortablePromise, AbortError } from '../index';
 describe('AbortablePromise', () => {
   it('is a promise', async () => {
     expect.assertions(1);
-    const abortablePromise = new AbortablePromise<number>(resolve => {
+    const abortablePromise = new AbortablePromise<number>((resolve) => {
       setTimeout(() => resolve(100), 100);
     });
     expect(abortablePromise).toBeInstanceOf(Promise);
@@ -12,7 +12,7 @@ describe('AbortablePromise', () => {
 
   it('can abort', async () => {
     expect.assertions(5);
-    const abortablePromise = new AbortablePromise<number>(resolve => {
+    const abortablePromise = new AbortablePromise<number>((resolve) => {
       setTimeout(() => resolve(500), 500);
     });
 
@@ -33,7 +33,7 @@ describe('AbortablePromise', () => {
 
   it('can abort with reason', async () => {
     expect.assertions(5);
-    const abortablePromise = new AbortablePromise<number>(resolve => {
+    const abortablePromise = new AbortablePromise<number>((resolve) => {
       setTimeout(() => resolve(500), 500);
     });
 
@@ -82,7 +82,7 @@ describe('AbortablePromise', () => {
 
   it('can be created from existing promise', async () => {
     expect.assertions(4);
-    const promise = new Promise<number>(resolve => {
+    const promise = new Promise<number>((resolve) => {
       setTimeout(() => resolve(500), 500);
     });
     const abortablePromise = AbortablePromise.from(promise);
@@ -101,7 +101,7 @@ describe('AbortablePromise', () => {
   });
 });
 
-describe("AbortError", () => {
+describe('AbortError', () => {
   it('construct with default message', () => {
     const error = new AbortError();
     expect(error.name).toEqual('AbortError');
